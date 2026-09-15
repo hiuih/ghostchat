@@ -1,19 +1,22 @@
 <title>Ghostchat</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0b0b0d;
-    --surface:#151319;
-    --surface-2:#1c1a22;
-    --line:#2a2732;
-    --text:#f3f2ed;
-    --text-muted:#98959e;
+    --bg:#faf9f5;
+    --surface:#ffffff;
+    --surface-2:#f2f0e9;
+    --line:#e6e3d9;
+    --text:#18161c;
+    --text-muted:#6b6870;
     --yellow:#fffc00;
-    --yellow-dim:#c9c700;
+    --yellow-ink:#8a7300;
     --violet:#6b5ce0;
-    --violet-glow: rgba(107,92,224,0.35);
+    --violet-wash: rgba(107,92,224,0.10);
     --radius-lg:28px;
     --radius-md:16px;
     --font-display:'Bricolage Grotesque', system-ui, sans-serif;
@@ -26,8 +29,8 @@
   body{
     margin:0;
     background:
-      radial-gradient(1100px 620px at 82% -8%, var(--violet-glow), transparent 60%),
-      radial-gradient(900px 500px at 8% 0%, rgba(255,252,0,0.08), transparent 55%),
+      radial-gradient(1100px 620px at 82% -8%, var(--violet-wash), transparent 60%),
+      radial-gradient(900px 500px at 8% 0%, rgba(232,182,0,0.10), transparent 55%),
       var(--bg);
     color:var(--text);
     font-family:var(--font-body);
@@ -64,11 +67,11 @@
   }
   .eyebrow{
     font-family:var(--font-mono); font-size:12.5px; letter-spacing:0.09em; text-transform:uppercase;
-    color:var(--yellow); display:flex; align-items:center; gap:8px; margin-bottom:18px;
+    color:var(--yellow-ink); display:flex; align-items:center; gap:8px; margin-bottom:18px;
   }
-  .eyebrow::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--yellow); box-shadow:0 0 12px 2px var(--yellow);}
+  .eyebrow::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--yellow); box-shadow:0 0 0 4px rgba(255,252,0,0.25);}
   .hero h1{font-size:clamp(38px,5vw,60px); line-height:1.04; font-weight:700; letter-spacing:-0.02em;}
-  .hero h1 em{font-style:normal; color:var(--yellow);}
+  .hero h1 em{font-style:normal; color:var(--yellow-ink); background:linear-gradient(to bottom, transparent 62%, var(--yellow) 62%); padding-inline:1px;}
   .hero-sub{margin-top:20px; font-size:18px; line-height:1.55; color:var(--text-muted); max-width:46ch;}
   .hero-ctas{display:flex; gap:12px; margin-top:32px; flex-wrap:wrap;}
   .btn-primary{
@@ -88,7 +91,7 @@
   }
   .ghost-glow{
     position:absolute; width:280px; height:280px; border-radius:50%;
-    background:radial-gradient(circle, rgba(255,252,0,0.22), transparent 70%);
+    background:radial-gradient(circle, rgba(24,22,28,0.10), transparent 70%);
     filter:blur(10px);
     animation:float 6s ease-in-out infinite;
   }
@@ -99,22 +102,23 @@
   /* ---------- WINDOW MOCKUP ---------- */
   .mockup-section{padding-block:20px 80px;}
   .mac-window{
+    --mw-muted:#9b98a6;
     background:#121016; border-radius:var(--radius-lg); overflow:hidden;
-    border:1px solid var(--line);
-    box-shadow:0 40px 80px -30px rgba(0,0,0,0.7);
+    border:1px solid #2a2732;
+    box-shadow:0 40px 80px -30px rgba(24,22,28,0.35);
     display:grid; grid-template-columns:280px 1fr;
   }
   .mw-titlebar{
     grid-column:1 / -1; height:40px; display:flex; align-items:center; padding-inline:16px; gap:8px;
-    background:#17151c; border-bottom:1px solid var(--line); position:relative;
+    background:#17151c; border-bottom:1px solid #2a2732; position:relative;
   }
   .mw-dot{width:11px; height:11px; border-radius:50%;}
   .mw-titlebar span{
     position:absolute; left:50%; transform:translateX(-50%);
-    font-size:13px; color:var(--text-muted); font-weight:600;
+    font-size:13px; color:var(--mw-muted); font-weight:600;
   }
-  .mw-sidebar{background:#141218; border-right:1px solid var(--line); padding:16px 14px;}
-  .mw-search{background:#1e1c24; border-radius:999px; padding:9px 14px; font-size:13px; color:var(--text-muted); margin-bottom:16px;}
+  .mw-sidebar{background:#141218; border-right:1px solid #2a2732; padding:16px 14px;}
+  .mw-search{background:#1e1c24; border-radius:999px; padding:9px 14px; font-size:13px; color:var(--mw-muted); margin-bottom:16px;}
   .mw-stories{display:flex; gap:10px; margin-bottom:18px;}
   .mw-story-ring{width:40px; height:40px; border-radius:50%; border:2px solid var(--yellow); padding:2px;}
   .mw-story-ring div{width:100%; height:100%; border-radius:50%; background:linear-gradient(135deg,#3a3546,#211f28);}
@@ -123,8 +127,8 @@
   .mw-row.active{background:#1e1c24;}
   .mw-avatar{width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,#4a4458,#211f28); flex-shrink:0;}
   .mw-row-text{display:flex; flex-direction:column; gap:3px;}
-  .mw-row-text b{font-size:13.5px; font-weight:600;}
-  .mw-row-text span{font-size:12px; color:var(--text-muted);}
+  .mw-row-text b{font-size:13.5px; font-weight:600; color:#f3f2ed;}
+  .mw-row-text span{font-size:12px; color:var(--mw-muted);}
   .mw-main{position:relative; background:
       radial-gradient(600px 400px at 70% 20%, rgba(107,92,224,0.25), transparent 60%),
       radial-gradient(500px 400px at 20% 90%, rgba(255,252,0,0.12), transparent 55%),
@@ -144,7 +148,7 @@
     margin-bottom:90px;
   }
   .feature{background:var(--surface); padding:26px 24px;}
-  .feature .num{font-family:var(--font-mono); font-size:12px; color:var(--yellow); margin-bottom:14px; display:block;}
+  .feature .num{font-family:var(--font-mono); font-size:12px; color:var(--yellow-ink); margin-bottom:14px; display:block;}
   .feature h3{font-size:16.5px; font-weight:700; margin-bottom:8px;}
   .feature p{font-size:14px; line-height:1.55; color:var(--text-muted);}
 
@@ -163,9 +167,10 @@
   .dl-card .size{font-family:var(--font-mono); font-size:13px; color:var(--text-muted);}
   .dl-card .btn-primary{justify-content:center; width:100%;}
   .install-note{
-    margin-top:26px; padding:18px 20px; background:#0e0c12; border:1px solid var(--line);
-    border-radius:var(--radius-md); font-family:var(--font-mono); font-size:13px; line-height:1.7; color:var(--text-muted);
+    margin-top:26px; padding:18px 20px; background:#141218; border:1px solid #2a2732;
+    border-radius:var(--radius-md); font-family:var(--font-mono); font-size:13px; line-height:1.7; color:#b3b0bb;
   }
+  .install-note strong{color:#f3f2ed;}
   .install-note .accent{color:var(--yellow);}
 
   /* ---------- FOOTER ---------- */
